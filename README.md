@@ -155,12 +155,49 @@ Step 4- Explore the data and start to tackle your research questions in a progra
 
 PLACEHOLDER SAMPLE PANDAS EDA CODE FROM JUPYTER
 
-# Text Analysis in Python using `nltk`
+Pandas lab refresh: https://github.com/kwaldenphd/pandas-machine-learning-intro#interacting-with-a-dataframe
 
+# Text Analysis
 
+## Getting text from dataframe
+
+Let's say we wanted to focus on the text of these ads, in addition to the other metadata available for each ad.
+
+We might want to do things like count term frequency or calculate term relationships.
+
+Those forms of analysis fall under the umbrella of **natural language processing**, a type of computational text analysis.
+
+Our first step is to isolate the ad text from the dataframe.
+
+PLACEHOLDER PYTHON CODE THAT DOES THIS
+
+## Voyant Tools
+
+Tutorial link: https://github.com/kwaldenphd/Voyant-tutorial/tree/SPN-285
+
+## AntConc
+
+Tutorial link: https://github.com/kwaldenphd/AntConc-tutorial/tree/SPN320-Fall2019
+
+## Text Analysis in Python using `nltk`
+
+The first thing we need to do is install the the Natural Language Toolkit (NLTK) package.
+
+"NLTK is a leading platform for building Python programs to work with human language data. It provides easy-to-use interfaces to over 50 corpora and lexical resources such as WordNet, along with a suite of text processing libraries for classification, tokenization, stemming, tagging, parsing, and semantic reasoning, wrappers for industrial-strength NLP libraries, and an active discussion forum" ([NLTK 3.5 documentation](https://www.nltk.org/index.html))
+
+PLACEHOLDER PYTHON NLTK CODE FROM JUPYTER
 
 # Putting it all together
 
-# Next steps
+Discussion questions:
+- What kinds of things were you interested in exploring via this dataset?
+- How did you approach those questions using computational methods?
+  * This could focus on what you did in Python using `pandas` and/or `nltk`
+  * You could also think about insights gained from the graphical user interface programs Voyant or AntConc
+- What kinds of insights were you able to determine?
+- How did interacting with this data using computational methods shape your understanding of the data?
+- Where would you go next?
+- How are we thinking about race and surveillance?
+- Other questions/thoughts/observations
 
 # Lab Notebook Questions
