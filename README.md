@@ -80,10 +80,10 @@ Additional background and reporting:
 
 Discussion questions:
 - What happened?
-- Who was involved
-- How did we find out
-- What was the goal/purpose
-- What tech was used
+- Who was involved?
+- How did we find out?
+- What was the goal/purpose of the targeted ads?
+- What kinds of technology (or technology platforms) were targeted?
 - Other comments/questions/observations
 
 # The Data
