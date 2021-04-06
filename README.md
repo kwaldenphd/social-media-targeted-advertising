@@ -166,10 +166,6 @@ PLACEHOLDER
 
 PLACEHOLDER
 
-## AntConc
-
-PLACEHOLDER
-
 ## Text Analysis in Python using `nltk`
 
 PLACEHOLDER PYTHON NLTK CODE
