@@ -3,13 +3,19 @@
 <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="Creative Commons License" /></a>
 This tutorial is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
 
-## Lab Goals
-
 ## Acknowledgements
 
 This lab uses 
 
 # Table of Contents
+
+- [Overview](#overview)
+- [The Investigation](#the-investigation)
+- [The Data](#the-data)
+- [Exploratory Data Analysis](#exploratory-data-analysis)
+  * [Example 1](#example-1)
+  * [Example 2](#example-2)
+- [Your Turn: Exploratory Data Analysis in Pandas](#exploratory-data-analysis-in-pandas)
 
 # Overview
 
