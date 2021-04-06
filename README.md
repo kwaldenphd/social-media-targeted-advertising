@@ -143,7 +143,8 @@ Discuss what you are seeing with a colleague/colleagues:
 - What other questions do you have about this data after exploring this project?
 - Other questions/comments/observations
 
-## Your turn
+
+# Exploratory Data Analysis in `pandas`
 
 We've looked at the underlying data as well as a couple of projects that analyze this data.
 
@@ -157,41 +158,25 @@ Step 3- Load the data as a `pandas` data frame.
 
 Step 4- Explore the data and start to tackle your research questions in a programming environment
 
-# Exploratory Data Analysis in `pandas`
-
-PLACEHOLDER SAMPLE PANDAS EDA CODE FROM JUPYTER
-
-Pandas lab refresh: https://github.com/kwaldenphd/pandas-machine-learning-intro#interacting-with-a-dataframe
+PLACEHOLDER SAMPLE PANDAS EDA CODE
 
 # Text Analysis
 
-## Getting text from dataframe
+## From DataFrame to Text
 
-Let's say we wanted to focus on the text of these ads, in addition to the other metadata available for each ad.
-
-We might want to do things like count term frequency or calculate term relationships.
-
-Those forms of analysis fall under the umbrella of **natural language processing**, a type of computational text analysis.
-
-Our first step is to isolate the ad text from the dataframe.
-
-PLACEHOLDER PYTHON CODE THAT DOES THIS
+PLACEHOLDER
 
 ## Voyant Tools
 
-Tutorial link: https://github.com/kwaldenphd/Voyant-tutorial/tree/SPN-285
+PLACEHOLDER
 
 ## AntConc
 
-Tutorial link: https://github.com/kwaldenphd/AntConc-tutorial/tree/SPN320-Fall2019
+PLACEHOLDER
 
 ## Text Analysis in Python using `nltk`
 
-The first thing we need to do is install the the Natural Language Toolkit (NLTK) package.
-
-"NLTK is a leading platform for building Python programs to work with human language data. It provides easy-to-use interfaces to over 50 corpora and lexical resources such as WordNet, along with a suite of text processing libraries for classification, tokenization, stemming, tagging, parsing, and semantic reasoning, wrappers for industrial-strength NLP libraries, and an active discussion forum" ([NLTK 3.5 documentation](https://www.nltk.org/index.html))
-
-PLACEHOLDER PYTHON NLTK CODE FROM JUPYTER
+PLACEHOLDER PYTHON NLTK CODE
 
 # Putting it all together
 
@@ -207,3 +192,5 @@ Discussion questions:
 - Other questions/thoughts/observations
 
 # Lab Notebook Questions
+
+PLACEHOLDER
