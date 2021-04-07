@@ -11,7 +11,18 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 - [Exploratory Data Analysis](#exploratory-data-analysis)
   * [Example 1](#example-1)
   * [Example 2](#example-2)
-- [Your Turn: Exploratory Data Analysis in Pandas](#exploratory-data-analysis-in-pandas)
+- [Your Turn: Exploratory Data Analysis](#your-turn-exploratory-data-analysis)
+  * [Load Data as Pandas DataFrame](#load-data-as-pandas-dataframe)
+  * [Exploratory Data Analysis in Pandas](#exploratory-data-analysis-in-pandas)
+    * [Visualization in Pandas](#visualization-in-pandas)
+  * [From DataFrame to Text File](#from-dataframe-to-text-file)
+  * [Text Analysis Using Voyant Tools](#text-analysis-using-voyant-tools)
+  * [Natural Language Processing Using NLTK](#natural-language-processing-using-nltk)
+    * [Loading NLTK](#loading-nltk)
+    * [Different Options for Tokenizing using NLTK](#different-options-for-tokenizing-using-nltk)
+    * [Analyzing Term Frequency](#analyzing-term-frequency)
+- [Putting It All Together](#putting-it-all-together)
+- [Lab Notebook Questions](#lab-notebook-questions)
 
 # Overview
 
