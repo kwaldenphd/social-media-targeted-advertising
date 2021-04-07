@@ -324,7 +324,13 @@ Once a text or corpus has been uploaded, Voyant moves into its ‘default skin,�
 
 For more on Voyant's interface and functionality: https://github.com/kwaldenphd/Voyant-tutorial/tree/SPN-285#editing-in-voyant
 
-## Text Analysis in Python using `nltk`
+# Natural Language Processing Using NLTK
+
+"The Natural Language Toolkit (NLTK) is a collection of reusable Python tools (also known as a Python library that help researchers apply a set of computational methods to texts. The tools range from methods of breaking up text into smaller pieces, to identifying whether a word belongs in a given language, to sample texts that researchers can use for training and development purposes (such as the complete text of Moby Dick)." [Zoë Wilkinson Saldaña, "Sentiment Analysis for Exploratory Data Analysis," The Programming Historian 7 (2018), https://doi.org/10.46430/phen0079.]
+
+For more info on NLTK: https://www.nltk.org/
+
+## Loading NLTK
 
 ```Python
 # load nltk
@@ -341,17 +347,65 @@ nltk.download('averaged_perceptron_tagger')
 
 from nltk.tag import pos_tag
 ```
+## Different Options for Tokenizing Using NLTK
+
+In Natural Language Processing (NLP), "tokenizing" refers to the process of breaking a large text into smaller units (words or sentences) known as tokens.
+
+NLTK includes a wide range of options for tokenizing text data.
 
 ```Python
-# load stopword list
-nltk.download('stopwords')
+# tokenize using word_tokenize
+from nltk.tokenize import word_tokenize
 
-from nltk.corpus import stopwords
+text_str = str(text)
 
-stopwords = stopwords.words('English')
-
-stopwords
+# text_str
+    
+word_tokenize(text_str)
 ```
+
+```Python
+# tokenize using TreebankWordTokenizer
+from nltk.tokenize import TreebankWordTokenizer
+
+text_str = str(text)
+
+# text_str
+    
+tokenizer = TreebankWordTokenizer()
+
+tokenizer.tokenize(text_str)
+```
+
+```Python
+# tokenize using WordPunctTokenizer 
+from nltk.tokenize import WordPunctTokenizer
+
+text_str = str(text)
+
+# text_str
+    
+tokenizer = WordPunctTokenizer()
+
+tokenizer.tokenize(text_str)
+```
+
+```Python
+#tokenize using RegexpTokenizer
+from nltk.tokenize import RegexpTokenizer
+
+text_str = str(text)
+
+# text_str
+    
+tokenizer = RegexpTokenizer("[\w']+")
+
+regex_words = tokenizer.tokenize(text_str)
+
+regex_words
+```
+
+We can use the most effective tokenizing method for this data in combination with a few other data wrangling steps to output a unique list of words.
 
 ```Python
 # tokenize using word_tokenize
@@ -383,6 +437,7 @@ words = [w for w in words if not w in stop_words]
 # output cleaned list of words
 print(words)
 ```
+We can then take that list of words and plot term frequency and distribution.
 
 ```Python
 # import nltk components
@@ -408,7 +463,6 @@ data_analysis.plot()
 for word, frequency in data_analysis.most_common(10):
     print(u'{};{}'.format(word, frequency))
 ```
-
 
 # Putting it all together
 
