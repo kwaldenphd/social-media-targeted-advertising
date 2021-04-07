@@ -22,7 +22,7 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
     * [Different Options for Tokenizing using NLTK](#different-options-for-tokenizing-using-nltk)
     * [Analyzing Term Frequency](#analyzing-term-frequency)
 - [Putting It All Together](#putting-it-all-together)
-- [Lab Notebook Questions](#lab-notebook-questions)
+- [Lab Notebook Components](#lab-notebook-components)
 
 # Overview
 
@@ -151,7 +151,7 @@ Discuss what you are seeing with a colleague/colleagues:
 - Other questions/comments/observations
 
 
-# Exploratory Data Analysis in `pandas`
+# Your Turn: Exploratory Data Analysis
 
 We've looked at the underlying data as well as a couple of projects that analyze this data.
 
@@ -248,7 +248,7 @@ Other datasets you could explore:
 - [`interests.csv`](https://raw.githubusercontent.com/umd-mith/irads/master/analysis/interests.csv) (money, clicks, impressions, number of ads, interest)
 - [`people_who_match.csv`](https://raw.githubusercontent.com/umd-mith/irads/master/analysis/people_who_match.csv) (money, clicks, impressions, number of ads, people type who match
 
-# Visualizing This Data
+# Vizualization in Pandas
 
 ```Python
 # import pandas
@@ -416,6 +416,8 @@ regex_words = tokenizer.tokenize(text_str)
 regex_words
 ```
 
+## Analyzing Term Frequency
+
 We can use the most effective tokenizing method for this data in combination with a few other data wrangling steps to output a unique list of words.
 
 ```Python
@@ -475,7 +477,7 @@ for word, frequency in data_analysis.most_common(10):
     print(u'{};{}'.format(word, frequency))
 ```
 
-# Putting it all together
+# Putting It All Together
 
 Discussion questions:
 - What kinds of things were you interested in exploring via this dataset?
@@ -488,7 +490,7 @@ Discussion questions:
 - How are you thinking about race and surveillance after engaging with this data?
 - Other questions/thoughts/observations
 
-# Lab Notebook Questions
+# Lab Notebook Components
 
 The lab notebook consists of a narrative that documents and describes your experience working through this lab.
 
