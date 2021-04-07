@@ -154,21 +154,261 @@ Step 3- Load the data as a `pandas` data frame.
 
 Step 4- Explore the data and start to tackle your research questions in a programming environment
 
-PLACEHOLDER SAMPLE PANDAS EDA CODE
+## Load Data As Pandas DataFrame
 
-# Text Analysis
+```Python
+# import pandas
+import pandas as pd
 
-## From DataFrame to Text
+# load data as pandas dataframe from file
+irads = pd.read_csv("index_irads.csv")
 
-PLACEHOLDER
+irads
+```
 
-## Voyant Tools
+```Python
+# import pandas
+import pandas as pd
 
-PLACEHOLDER
+# load data as pandas dataframe from URL
+irads = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/social-media-targeted-advertising/main/index_irads.csv")
+
+irads
+```
+
+## Exploratory Data Analysis in Pandas
+
+```Python
+# show data types
+irads.dtypes
+
+# show dataframe info
+irads.info()
+
+# show summary statistics
+irads.describe()
+```
+
+```Python
+# sort ad vaues by cost (descending sort)
+
+irads.sort_values(by=["cost"], ascending=False).head()
+```
+
+```Python
+# sort by number of impressions, descending
+
+irads.sort_values(by="impressions", ascending=False).head()
+```
+
+```Python
+# sort by number of clicks, descending
+
+irads.sort_values(by="clicks", ascending=False).head()
+```
+
+```Python
+# sort by number of impressions and cost (descending)
+
+irads.sort_values(by=['clicks', 'cost'], ascending=False).head()
+```
+
+```Python
+# group titles based on exclusion category 
+
+irads[['title', 'exclude']].groupby('exclude').head()
+```
+
+```Python
+# number of ads by exclusion category
+
+irads['exclude'].value_counts()
+```
+
+```Python
+# number of ads by age range
+
+irads['age'].value_counts()
+```
+
+For more options on interacting with data in a `DataFrame`: https://github.com/kwaldenphd/pandas-machine-learning-intro#interacting-with-a-dataframe
+
+Other datasets you could explore:
+- [`interests.csv`](https://raw.githubusercontent.com/umd-mith/irads/master/analysis/interests.csv) (money, clicks, impressions, number of ads, interest)
+- [`people_who_match.csv`](https://raw.githubusercontent.com/umd-mith/irads/master/analysis/people_who_match.csv) (money, clicks, impressions, number of ads, people type who match
+
+# Visualizing This Data
+
+```Python
+# import pandas
+import pandas as pd
+
+# load data
+
+interests = pd.read_csv("https://raw.githubusercontent.com/umd-mith/irads/master/analysis/interests.csv")
+
+interests
+```
+
+```Python
+# quick visual check of the data using pandas built-in plotting function
+
+# import matplotlib
+import matplotlib.pyplot as plt
+
+# generate plot
+interests.plot()
+
+# show plot
+plt.show()
+```
+
+```Python
+# customize plot showing number of ads by cost
+
+interests.plot.scatter(x='money (RUB)', y='ads', alpha=0.5)
+```
+
+```Python
+# create new data frame for ads with over 100000 clicks
+
+top_interests = interests.loc[interests['clicks']>100000]
+
+top_interests
+```
+
+```Python
+# plot number of impressions by interest
+top_interests.plot.barh(x='interest', y='impressions', alpha=0.5)
+```
+
+For more on plotting data in a `dataframe`: https://github.com/kwaldenphd/more-with-matplotlib
+
+# From DataFrame to Text File
+
+```Python
+# test for not null values
+
+irads[irads["title"].notna()]
+```
+
+```Python
+# create data frame from not null fields
+text = irads[irads["description"].notna()]
+
+text = text["description"]
+
+text.head()
+```
+
+```Python
+# write ad text column to txt file
+text.to_csv('irads_text.txt', index=False)
+```
+
+# Text Analysis Using Voyant Tools
+
+<a href="http://voyant-tools.org/">Voyant Tools</a> is an open-source web application developed by Stéfan Sinclair and Geoffrey Rockwell in 2003, with later contributions added by Andrew MacDonald, Cyril Briquet, Lisa Goddard, and Mark Turcato. While Voyant is one of the leading robust web-based textual analysis interfaces, it grew out of existing text analysis tools like HyperPo, Tapoware, and TACT. Voyant also offers <a href="https://github.com/sgsinclair/Voyant">open-source code</a> that can be used to deploy the program on a server. Voyant users can upload text files from their computer, link to online text sources, or scrape the text off a webpage for analysis and visualization. Unlike more advanced, programming-oriented textual analysis programs like R and R Studio, Voyant gives users access to a range statistical analysis and visualization features without requiring significant technical knowledge.
+
+Download the newly-created text file.
+
+Open a web browser (preferably Firefox or Chrome) and navigate to the <a href="http://voyant-tools.org/">Voyant Tools homepage</a>.
+
+<p align="center"><a href="https://github.com/kwaldenphd/Voyant-tutorial/blob/master/screenshots/Capture_1.PNG?raw=true"><img class="aligncenter size-large wp-image-549" src="https://github.com/kwaldenphd/Voyant-tutorial/blob/master/screenshots/Capture_1.PNG?raw=true" alt="" width="676" height="523" /></a></p>
+
+Upload the file and click Reveal.
+
+<p align="center"><a href="https://github.com/kwaldenphd/Voyant-tutorial/blob/master/screenshots/Capture_2.PNG?raw=true"><img class="aligncenter size-large wp-image-550" src="https://github.com/kwaldenphd/Voyant-tutorial/blob/master/screenshots/Capture_2.PNG?raw=true" alt="" width="676" height="355" /></a></p>
+
+Once a text or corpus has been uploaded, Voyant moves into its ‘default skin,’ or primary editing environment.
+
+For more on Voyant's interface and functionality: https://github.com/kwaldenphd/Voyant-tutorial/tree/SPN-285#editing-in-voyant
 
 ## Text Analysis in Python using `nltk`
 
-PLACEHOLDER PYTHON NLTK CODE
+```Python
+# load nltk
+import sys 
+!{sys.executable} -m pip install --user -U nltk
+```
+
+```Python
+# import nltk
+import nltk
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+
+from nltk.tag import pos_tag
+```
+
+```Python
+# load stopword list
+nltk.download('stopwords')
+
+from nltk.corpus import stopwords
+
+stopwords = stopwords.words('English')
+
+stopwords
+```
+
+```Python
+# tokenize using word_tokenize
+from nltk.tokenize import word_tokenize
+
+tokens = word_tokenize(text_str)
+
+# convert to lower case
+tokens = [w.lower() for w in tokens]
+
+# remove punctuation/special characters
+import string
+table = str.maketrans('', '', string.punctuation)
+stripped = [w.translate(table) for w in tokens]
+
+# remove non-text content
+words = [word for word in stripped if word.isalpha()]
+
+# filter out stop words
+from nltk.corpus import stopwords
+
+stop_words = set(stopwords.words('english'))
+
+words = [w for w in words if not w in stop_words]
+
+# removes words with fewer than 3 characters
+# words = [word for word in words if len(word) > 3]
+
+# output cleaned list of words
+print(words)
+```
+
+```Python
+# import nltk components
+import nltk
+from nltk.corpus import webtext
+from nltk.probability import FreqDist
+
+nltk.download('webtext')
+
+# analyze term frequency/distribution
+data_analysis = nltk.FreqDist(words)
+
+data_analysis
+```
+
+```Python
+# plot term frequency/distribution for all terms
+data_analysis.plot()
+```
+
+```Python
+# show term frequency/distribution for top 10 terms
+for word, frequency in data_analysis.most_common(10):
+    print(u'{};{}'.format(word, frequency))
+```
+
 
 # Putting it all together
 
@@ -176,13 +416,28 @@ Discussion questions:
 - What kinds of things were you interested in exploring via this dataset?
 - How did you approach those questions using computational methods?
   * This could focus on what you did in Python using `pandas` and/or `nltk`
-  * You could also think about insights gained from the graphical user interface programs Voyant or AntConc
+  * You could also think about insights gained from a graphical user interface programs like Voyant Tools
 - What kinds of insights were you able to determine?
 - How did interacting with this data using computational methods shape your understanding of the data?
 - Where would you go next?
-- How are we thinking about race and surveillance?
+- How are you thinking about race and surveillance after engaging with this data?
 - Other questions/thoughts/observations
 
 # Lab Notebook Questions
 
-PLACEHOLDER
+The lab notebook consists of a narrative that documents and describes your experience working through this lab.
+
+You can respond to/engage with other discussion questions included in the lab procedure.
+
+But specific questions for the lab notebook (from the "Putting It All Together" section):
+- What kinds of things were you interested in exploring via this dataset?
+- How did you approach those questions using computational methods?
+  * This could focus on what you did in Python using `pandas` and/or `nltk`
+  * You could also think about insights gained from a graphical user interface programs like Voyant Tools
+- What kinds of insights were you able to determine?
+- How did interacting with this data using computational methods shape your understanding of the data?
+- Where would you go next?
+- How are you thinking about race and surveillance after engaging with this data?
+- Other questions/thoughts/observations
+
+I encourage folks to include code + screenshots as part of that narrative.
