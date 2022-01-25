@@ -613,3 +613,6 @@ But specific questions for the lab notebook (from the "Putting It All Together" 
 - Other questions/thoughts/observations
 
 I encourage folks to include code + screenshots as part of that narrative.
+- You are welcome (but not required) to include Python code as part of that narrative.
+
+Thes reflection should include comments from each member of the group. These can be combined in a single notebook or submitted individually along with work completed collaboratively.
