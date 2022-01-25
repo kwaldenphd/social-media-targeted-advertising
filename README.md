@@ -280,6 +280,17 @@ irads['age'].value_counts()
 # import pandas
 import pandas as pd
 
+# load interests data from file
+interests = pd.read_csv("interests.csv")
+
+# show data
+interests
+```
+
+```Python
+# import pandas
+import pandas as pd
+
 # load interests data from url
 interests = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/social-media-targeted-advertising/main/data/interests.csv")
 
