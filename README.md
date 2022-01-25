@@ -5,6 +5,7 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 
 # Table of Contents
 
+- [Lab Materials](#lab-materials)
 - [Overview](#overview)
 - [The Investigation](#the-investigation)
 - [The Data](#the-data)
@@ -16,13 +17,41 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
   * [Exploratory Data Analysis in Pandas](#exploratory-data-analysis-in-pandas)
     * [Visualization in Pandas](#visualization-in-pandas)
   * [From DataFrame to Text File](#from-dataframe-to-text-file)
-  * [Text Analysis Using Voyant Tools](#text-analysis-using-voyant-tools)
-  * [Natural Language Processing Using NLTK](#natural-language-processing-using-nltk)
-    * [Loading NLTK](#loading-nltk)
-    * [Different Options for Tokenizing using NLTK](#different-options-for-tokenizing-using-nltk)
-    * [Analyzing Term Frequency](#analyzing-term-frequency)
+  * [Text Analysis](#text-analysis)
+    * [DataBasic WordCounter](#databasic-wordcounter)
+	* [Voyant Tools](#voyant-tools)
+    * [Natural Language Processing Using NLTK](#natural-language-processing-using-nltk)
 - [Putting It All Together](#putting-it-all-together)
 - [Lab Notebook Components](#lab-notebook-components)
+
+# Lab Materials
+
+**Procedure:**
+- [Click here](https://colab.research.google.com/drive/1ms8CrIcBLZX0enCpivZkaSNmz5SWkqQ1?usp=sharing) to access the lab procedure as a Jupyter Notebook
+
+**Lab notebook template:**
+- [Jupyter Notebook](https://colab.research.google.com/drive/1_d3Cw9IAP78QioYy9FBI_bCxsm4xRu04?usp=sharing)
+- [Google Doc](https://docs.google.com/document/d/1qrlWzJ8s-k0Ac73tv7rIMFY-cRolN5dYfa4_9wz6OBQ/copy)
+
+**Files**
+
+We'll be using two primary data files for this lab- structured data (`.csv` or `.json` options) and unstructured text (`.txt`)
+
+- `index_irads.csv`
+  * [Google Drive](https://drive.google.com/file/d/1unyN0-U378rtcq-px37k7xjWmOf9rYsD/view?usp=sharing)
+  * GitHub: https://raw.githubusercontent.com/kwaldenphd/social-media-targeted-advertising/main/data/index_irads.csv
+
+- `index_irads.json`
+  * [Google Drive](https://drive.google.com/file/d/19vi92QXEuwNlC7nvF0K617QRU9xnafKB/view?usp=sharing)
+  * GitHub: https://raw.githubusercontent.com/kwaldenphd/social-media-targeted-advertising/main/data/index_irads.json
+  
+- `interests.csv`
+  * [Google Drive](https://drive.google.com/file/d/148ObLGnNrMvq5k9CzcW2TgmrqjqKzn1h/view?usp=sharing)
+  * GitHub: https://raw.githubusercontent.com/kwaldenphd/social-media-targeted-advertising/main/data/interests.csv
+
+- `irads_text.txt`
+  * [Google Drive](https://drive.google.com/file/d/1PkJRWbdI0grb3bZROFlyJ7g9Ys7wCBf4/view?usp=sharing)
+  * GitHub: https://raw.githubusercontent.com/kwaldenphd/social-media-targeted-advertising/main/data/irads_text.txt
 
 # Overview
 
@@ -32,7 +61,8 @@ Noble calls for "all the voices to come to the fore and impact public policy on 
 
 Thinking about the chapters we read from *Algorithms of Oppression*....
 
-Discussion questions:
+**Discussion questions:**
+
 - What stood out to you from Chapter 1's opening story about the UN Women campaign?
   * What connections can we make with the author’s broader framework of algorithmic oppression?
 
@@ -91,7 +121,7 @@ Additional background and reporting:
   * New Knowledge, "[The Tactics and Tropes of the Internet Research Agency](https://assets.documentcloud.org/documents/5631777/Whitepaper-Final.pdf)" *white paper* (2018)
   * Special Counsel Robert S. Muller, III, "[Report On The Investigation Into Russian Interference In The 2016 Presidential Election](https://www.justice.gov/storage/report.pdf)" (March 2019)
 
-Discussion questions:
+**Discussion questions:**
 - What happened?
 - Who was involved?
 - How did we find out?
@@ -113,7 +143,7 @@ The extracted images and metadata are published online via the [`irads project` 
 
 Next, let's explore [that GitHub repository](https://github.com/umd-mith/irads) to get a sense of what metadata is available for these advertisements.
 
-Discussion questions:
+**Discussion questions:**
 - From available info, what steps were taken to extract data/images from the PDFs?
 - How is the data structured, or how is the data made available via this repo?
 - What data points are included? What are you seeing in this dataset?
@@ -128,7 +158,7 @@ Let's look at two projects that present this data in a searcheable, exploratory 
 
 First, let's look at the [Internet Research Agency Ads](https://archive.mith.umd.edu/irads/about.html) digital project developed by students at the University of Maryland and the Maryland Institute for Technology in the Humanities (MITH).
 
-Discuss what you are seeing with a colleague/colleagues:
+**Discussion Questions:**
 - How is the data presented in this project?
 - What's the distance between the original data source and this presentation interface?
 - What choices or additional interpretive decisions were made as part of that data transformation process?
@@ -142,7 +172,7 @@ Next, let's look at Simon Willison's "Analyzing US Election Russian Facebook Ads
 - [Blog post](https://simonwillison.net/2018/Aug/6/russian-facebook-ads/)
 - [Searchable interface](https://russian-ira-facebook-ads.datasettes.com/)
 
-Discuss what you are seeing with a colleague/colleagues:
+**Discussion Questions:**
 - How is the data presented in this project?
 - What's the distance between the original data source and this presentation interface?
 - What choices or additional interpretive decisions were made as part of that data transformation process?
@@ -150,20 +180,19 @@ Discuss what you are seeing with a colleague/colleagues:
 - What other questions do you have about this data after exploring this project?
 - Other questions/comments/observations
 
-
 # Your Turn: Exploratory Data Analysis
 
-We've looked at the underlying data as well as a couple of projects that analyze this data.
+1. We've looked at the underlying data as well as a couple of projects that analyze this data.
 
-Now it's your turn to think about what types of questions or analysis you want to perform on this dataset.
+2. Now it's your turn to think about what types of questions or analysis you want to perform on this dataset.
 
-Step 1- Consider what fields are included in the underlying dataset.
+  * Step 1- Consider what fields are included in the underlying dataset.
 
-Step 2- Think about what questions you might want to ask of this data.
+  * Step 2- Think about what questions you might want to ask of this data.
 
-Step 3- Load the data as a `pandas` data frame.
+  * Step 3- Load the data as a `pandas` data frame.
 
-Step 4- Explore the data and start to tackle your research questions in a programming environment
+  * Step 4- Explore the data and start to tackle your research questions in a programming environment
 
 ## Load Data As Pandas DataFrame
 
@@ -174,6 +203,7 @@ import pandas as pd
 # load data as pandas dataframe from file
 irads = pd.read_csv("index_irads.csv")
 
+# show data
 irads
 ```
 
@@ -182,8 +212,9 @@ irads
 import pandas as pd
 
 # load data as pandas dataframe from URL
-irads = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/social-media-targeted-advertising/main/index_irads.csv")
+irads = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/social-media-targeted-advertising/main/data/index_irads.csv")
 
+# show data
 irads
 ```
 
@@ -202,62 +233,57 @@ irads.describe()
 
 ```Python
 # sort ad vaues by cost (descending sort)
-
 irads.sort_values(by=["cost"], ascending=False).head()
 ```
 
 ```Python
 # sort by number of impressions, descending
-
 irads.sort_values(by="impressions", ascending=False).head()
 ```
 
 ```Python
 # sort by number of clicks, descending
-
 irads.sort_values(by="clicks", ascending=False).head()
 ```
 
 ```Python
 # sort by number of impressions and cost (descending)
-
 irads.sort_values(by=['clicks', 'cost'], ascending=False).head()
 ```
 
 ```Python
 # group titles based on exclusion category 
-
 irads[['title', 'exclude']].groupby('exclude').head()
 ```
 
 ```Python
 # number of ads by exclusion category
-
 irads['exclude'].value_counts()
 ```
 
 ```Python
 # number of ads by age range
-
 irads['age'].value_counts()
 ```
 
-For more options on interacting with data in a `DataFrame`: https://github.com/kwaldenphd/pandas-machine-learning-intro#interacting-with-a-dataframe
+3. For more detail on how you can interact with data in a `DataFrame`: https://github.com/kwaldenphd/pandas-machine-learning-intro#interacting-with-a-dataframe
 
-Other datasets you could explore:
+4. Other datasets you could explore:
 - [`interests.csv`](https://raw.githubusercontent.com/umd-mith/irads/master/analysis/interests.csv) (money, clicks, impressions, number of ads, interest)
-- [`people_who_match.csv`](https://raw.githubusercontent.com/umd-mith/irads/master/analysis/people_who_match.csv) (money, clicks, impressions, number of ads, people type who match
+- [`people_who_match.csv`](https://raw.githubusercontent.com/umd-mith/irads/master/analysis/people_who_match.csv) (money, clicks, impressions, number of ads, people type who match)
 
 # Vizualization in Pandas
+
+5. Let's explore some preliminary visualizations using one of those other datasets (`interests.csv`).
 
 ```Python
 # import pandas
 import pandas as pd
 
-# load data
+# load interests data from url
+interests = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/social-media-targeted-advertising/main/data/interests.csv")
 
-interests = pd.read_csv("https://raw.githubusercontent.com/umd-mith/irads/master/analysis/interests.csv")
-
+# show data
 interests
 ```
 
@@ -276,15 +302,14 @@ plt.show()
 
 ```Python
 # customize plot showing number of ads by cost
-
 interests.plot.scatter(x='money (RUB)', y='ads', alpha=0.5)
 ```
 
 ```Python
 # create new data frame for ads with over 100000 clicks
-
 top_interests = interests.loc[interests['clicks']>100000]
 
+# show new dataframe
 top_interests
 ```
 
@@ -293,13 +318,16 @@ top_interests
 top_interests.plot.barh(x='interest', y='impressions', alpha=0.5)
 ```
 
-For more on plotting data in a `dataframe`: https://github.com/kwaldenphd/more-with-matplotlib
+6. For more on plotting data in a `dataframe`: https://github.com/kwaldenphd/more-with-matplotlib
 
 # From DataFrame to Text File
 
+7. We might also want to take a focused look at the text of the ads, contained in the `description` field.
+
+8. We can use Python to isolate that column/field and write it to a text (`.txt`) file.
+
 ```Python
 # test for not null values
-
 irads[irads["title"].notna()]
 ```
 
@@ -307,8 +335,10 @@ irads[irads["title"].notna()]
 # create data frame from not null fields
 text = irads[irads["description"].notna()]
 
+# select description field
 text = text["description"]
 
+# show new dataframe
 text.head()
 ```
 
@@ -317,40 +347,93 @@ text.head()
 text.to_csv('irads_text.txt', index=False)
 ```
 
-# Text Analysis Using Voyant Tools
+# Text Analysis 
+
+## DataBasic WordCounter
+
+9. According to [its website,](https://databasic.io) “DataBasic is a suite of easy-to-use web tools for beginners that introduce concepts of working with data. These simple tools make it easy to work with data in fun ways, so you can learn how to find great stories to tell.” DataBasic is developed and supported by MIT’s [Center for Civic Media](https://civic.mit.edu/) and Emerson College’s [Engagement Lab.](https://elab.emerson.edu/) 
+
+*Note: Images and screenshots included in this tutorial are from a sample corpus and do not reflect what you will see working with different texts*
+
+<p align="center"><img class=" size-full wp-image-53 aligncenter" src="https://github.com/kwaldenphd/DataBasic-tutorial/blob/master/screenshots/Capture_1.jpg?raw=true" alt="Capture" /></p>
+
+10. Navigate to https://databasic.io/ in a web browser (preferably Chrome). 
+
+## WordCounter
+
+<p align="center"><img class=" size-full wp-image-53 aligncenter" src="https://github.com/kwaldenphd/DataBasic-tutorial/blob/master/screenshots/Capture_4.jpg?raw=true" alt="Capture" /></p>
+
+11. Click on the WordCounter icon to open the WordCounter tool. 
+
+12. As described on the page, “WordCounter analyzes your text and tells you the most common words and phrases. This tool helps you count words, bigrams, and trigrams in plain text. This is often the first step in quantitative text analysis.”
+
+13. Bigrams are two-word phrases or expressions. Trigrams are three-word phrases or expressions.
+
+14. WordCounter gives you the option to use a sample text, paste in your own text, upload a file, or load text from a URL. We'll be using the text file created in the previous section of the lab (`irads_text.txt`).
+
+<p align="center"><img class=" size-full wp-image-53 aligncenter" src="https://github.com/kwaldenphd/DataBasic-tutorial/blob/master/screenshots/Capture_5.jpg?raw=true" alt="Capture" /></p>
+
+<p align="center"><img class=" size-full wp-image-53 aligncenter" src="https://github.com/kwaldenphd/DataBasic-tutorial/blob/master/screenshots/Capture_6.jpg?raw=true" alt="Capture" /></p>
+
+15. The default options selected in WordCounter will analyze the text without considering capitalization and stopwords.
+
+16. Stopwords are commonly used words. English-language examples include “and,” “the”, and “this.”
+
+17. Leave both options selected and click the Count icon.
+
+<p align="center"><img class=" size-full wp-image-53 aligncenter" src="https://github.com/kwaldenphd/DataBasic-tutorial/blob/master/screenshots/Capture_7.jpg?raw=true" alt="Capture" /></p>
+
+18. The first visualization generated by WordCount is a word cloud of the most frequently occurring terms in the document you uploaded. Hover over specific words with your cursor to see how many times they appear in the document.
+
+<p align="center"><img class=" size-full wp-image-53 aligncenter" src="https://github.com/kwaldenphd/DataBasic-tutorial/blob/master/screenshots/Capture_8.jpg?raw=true" alt="Capture" /></p>
+
+19. The tables below the word cloud on the results page include a list of words that appear most frequently in the document. WordCount has also generated a table with a list of bigrams and trigrams, as well as how many times they appear in the document.
+
+<p align="center"><img class=" size-full wp-image-53 aligncenter" src="https://github.com/kwaldenphd/DataBasic-tutorial/blob/master/screenshots/Capture_8a.jpg?raw=true" alt="Capture" /></p>
+
+20. You can click on the arrow icon next to any of the table titles to download a CSV (comma-separate value) file with the data contained in that table. This file can be opened in a spreadsheet program like Microsoft Excel.
+
+<p align="center"><img class=" size-full wp-image-53 aligncenter" src="https://github.com/kwaldenphd/DataBasic-tutorial/blob/master/screenshots/Capture_8c.jpg?raw=true" alt="Capture" /></p>
+
+<p align="center"><img class=" size-full wp-image-53 aligncenter" src="https://github.com/kwaldenphd/DataBasic-tutorial/blob/master/screenshots/Capture_8b.jpg?raw=true" alt="Capture" /></p>
+
+21. You can also click on the arrow icon next to the page title to get a link to your WordCounter results. Your results are available via that link for 60 days.
+
+## Voyant Tools
 
 <a href="http://voyant-tools.org/">Voyant Tools</a> is an open-source web application developed by Stéfan Sinclair and Geoffrey Rockwell in 2003, with later contributions added by Andrew MacDonald, Cyril Briquet, Lisa Goddard, and Mark Turcato. While Voyant is one of the leading robust web-based textual analysis interfaces, it grew out of existing text analysis tools like HyperPo, Tapoware, and TACT. Voyant also offers <a href="https://github.com/sgsinclair/Voyant">open-source code</a> that can be used to deploy the program on a server. Voyant users can upload text files from their computer, link to online text sources, or scrape the text off a webpage for analysis and visualization. Unlike more advanced, programming-oriented textual analysis programs like R and R Studio, Voyant gives users access to a range statistical analysis and visualization features without requiring significant technical knowledge.
 
-Download the newly-created text file.
+22. If needed, download the text (`.txt`) file created in the previous section of the lab.
+- [Link to access via Google Drive](https://drive.google.com/file/d/1PkJRWbdI0grb3bZROFlyJ7g9Ys7wCBf4/view?usp=sharin)
 
-Open a web browser (preferably Firefox or Chrome) and navigate to the <a href="http://voyant-tools.org/">Voyant Tools homepage</a>.
+23. Open a web browser (preferably Firefox or Chrome) and navigate to the <a href="http://voyant-tools.org/">Voyant Tools homepage</a>.
 
 <p align="center"><a href="https://github.com/kwaldenphd/Voyant-tutorial/blob/master/screenshots/Capture_1.PNG?raw=true"><img class="aligncenter size-large wp-image-549" src="https://github.com/kwaldenphd/Voyant-tutorial/blob/master/screenshots/Capture_1.PNG?raw=true" alt="" width="676" height="523" /></a></p>
 
-Upload the file and click Reveal.
+24. Upload the file and click Reveal.
 
 <p align="center"><a href="https://github.com/kwaldenphd/Voyant-tutorial/blob/master/screenshots/Capture_2.PNG?raw=true"><img class="aligncenter size-large wp-image-550" src="https://github.com/kwaldenphd/Voyant-tutorial/blob/master/screenshots/Capture_2.PNG?raw=true" alt="" width="676" height="355" /></a></p>
 
-Once a text or corpus has been uploaded, Voyant moves into its ‘default skin,’ or primary editing environment.
+25. Once a text or corpus has been uploaded, Voyant moves into its ‘default skin,’ or primary editing environment.
 
-For more on Voyant's interface and functionality: https://github.com/kwaldenphd/Voyant-tutorial/tree/SPN-285#editing-in-voyant
+26. [Link to tutorial with more details on using Voyant](https://github.com/kwaldenphd/football-text-analysis/blob/main/voyant-tools.md)
 
-# Natural Language Processing Using NLTK
+## Natural Language Processing Using NLTK
 
-"The Natural Language Toolkit (NLTK) is a collection of reusable Python tools (also known as a Python library that help researchers apply a set of computational methods to texts. The tools range from methods of breaking up text into smaller pieces, to identifying whether a word belongs in a given language, to sample texts that researchers can use for training and development purposes (such as the complete text of Moby Dick)." [Zoë Wilkinson Saldaña, "Sentiment Analysis for Exploratory Data Analysis," The Programming Historian 7 (2018), https://doi.org/10.46430/phen0079.]
+27. "The Natural Language Toolkit (NLTK) is a collection of reusable Python tools (also known as a Python library that help researchers apply a set of computational methods to texts. The tools range from methods of breaking up text into smaller pieces, to identifying whether a word belongs in a given language, to sample texts that researchers can use for training and development purposes (such as the complete text of Moby Dick)." [Zoë Wilkinson Saldaña, "Sentiment Analysis for Exploratory Data Analysis," *The Programming Historian 7* (2018), https://doi.org/10.46430/phen0079.]
 
-For more info on NLTK: https://www.nltk.org/
+28. For more info on NLTK: https://www.nltk.org/
 
-## Loading NLTK
+### Loading NLTK
 
 ```Python
-# load nltk
+# install nltk
 import sys 
 !{sys.executable} -m pip install --user -U nltk
 ```
 
 ```Python
-# import nltk
+# import statements
 import nltk
 nltk.download('punkt')
 nltk.download('wordnet')
@@ -358,72 +441,82 @@ nltk.download('averaged_perceptron_tagger')
 
 from nltk.tag import pos_tag
 ```
-## Different Options for Tokenizing Using NLTK
 
-In Natural Language Processing (NLP), "tokenizing" refers to the process of breaking a large text into smaller units (words or sentences) known as tokens.
+### Different Options for Tokenizing Using NLTK
 
-NLTK includes a wide range of options for tokenizing text data.
+29. In Natural Language Processing (NLP), "tokenizing" refers to the process of breaking a large text into smaller units (words or sentences) known as tokens.
+
+30. NLTK includes a wide range of options for tokenizing text data.
+
+```Python
+# convert text to string
+text_str = str(text)
+
+# show text
+text_str
+```
 
 ```Python
 # tokenize using word_tokenize
+
+# import statements
 from nltk.tokenize import word_tokenize
 
-text_str = str(text)
-
-# text_str
-    
+# tokenize using word_tokenize
 word_tokenize(text_str)
 ```
 
 ```Python
 # tokenize using TreebankWordTokenizer
+
+# import statements
 from nltk.tokenize import TreebankWordTokenizer
 
-text_str = str(text)
-
-# text_str
-    
+# load tokenizer
 tokenizer = TreebankWordTokenizer()
 
+# tokenize using TreebankWordTokenizer
 tokenizer.tokenize(text_str)
 ```
 
 ```Python
 # tokenize using WordPunctTokenizer 
+
+# import statement
 from nltk.tokenize import WordPunctTokenizer
 
-text_str = str(text)
-
-# text_str
-    
+# load tokenizer    
 tokenizer = WordPunctTokenizer()
 
+# tokenize using WordPunctTokenizer
 tokenizer.tokenize(text_str)
 ```
 
 ```Python
 #tokenize using RegexpTokenizer
+
+# import statement
 from nltk.tokenize import RegexpTokenizer
 
-text_str = str(text)
-
-# text_str
-    
+# load tokenizer
 tokenizer = RegexpTokenizer("[\w']+")
 
+# tokenize using RegexpTokenizer
 regex_words = tokenizer.tokenize(text_str)
 
+# show tokenized list
 regex_words
 ```
 
-## Analyzing Term Frequency
+### Analyzing Term Frequency
 
-We can use the most effective tokenizing method for this data in combination with a few other data wrangling steps to output a unique list of words.
+31. We can use the most effective tokenizing method for this data in combination with a few other data wrangling steps to output a unique list of words.
 
 ```Python
 # tokenize using word_tokenize
 from nltk.tokenize import word_tokenize
 
+# convert to string
 tokens = word_tokenize(text_str)
 
 # convert to lower case
@@ -439,30 +532,29 @@ words = [word for word in stripped if word.isalpha()]
 
 # filter out stop words
 from nltk.corpus import stopwords
-
 stop_words = set(stopwords.words('english'))
-
 words = [w for w in words if not w in stop_words]
 
-# removes words with fewer than 3 characters
-# words = [word for word in words if len(word) > 3]
+# remove words with fewer than 3 characters
+words = [word for word in words if len(word) > 3]
 
 # output cleaned list of words
 print(words)
 ```
-We can then take that list of words and plot term frequency and distribution.
+
+32. We can then take that list of words and plot term frequency and distribution.
 
 ```Python
 # import nltk components
 import nltk
 from nltk.corpus import webtext
 from nltk.probability import FreqDist
-
 nltk.download('webtext')
 
 # analyze term frequency/distribution
 data_analysis = nltk.FreqDist(words)
 
+# show analysis
 data_analysis
 ```
 
@@ -479,11 +571,10 @@ for word, frequency in data_analysis.most_common(10):
 
 # Putting It All Together
 
-Discussion questions:
+**Discussion questions:**
 - What kinds of things were you interested in exploring via this dataset?
 - How did you approach those questions using computational methods?
-  * This could focus on what you did in Python using `pandas` and/or `nltk`
-  * You could also think about insights gained from a graphical user interface programs like Voyant Tools
+  * This could focus on what you did in DataBasic, Voyant, or Python (using `pandas` and/or `nltk`)
 - What kinds of insights were you able to determine?
 - How did interacting with this data using computational methods shape your understanding of the data?
 - Where would you go next?
@@ -492,6 +583,10 @@ Discussion questions:
 
 # Lab Notebook Components
 
+**Lab notebook template:**
+- [Jupyter Notebook](https://colab.research.google.com/drive/1_d3Cw9IAP78QioYy9FBI_bCxsm4xRu04?usp=sharing)
+- [Google Doc](https://docs.google.com/document/d/1qrlWzJ8s-k0Ac73tv7rIMFY-cRolN5dYfa4_9wz6OBQ/copy)
+
 The lab notebook consists of a narrative that documents and describes your experience working through this lab.
 
 You can respond to/engage with other discussion questions included in the lab procedure.
@@ -499,8 +594,7 @@ You can respond to/engage with other discussion questions included in the lab pr
 But specific questions for the lab notebook (from the "Putting It All Together" section):
 - What kinds of things were you interested in exploring via this dataset?
 - How did you approach those questions using computational methods?
-  * This could focus on what you did in Python using `pandas` and/or `nltk`
-  * You could also think about insights gained from a graphical user interface programs like Voyant Tools
+  * This could focus on what you did in DataBasic, Voyant, or Python (using `pandas` and/or `nltk`)
 - What kinds of insights were you able to determine?
 - How did interacting with this data using computational methods shape your understanding of the data?
 - Where would you go next?
