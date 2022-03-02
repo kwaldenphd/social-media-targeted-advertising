@@ -272,7 +272,7 @@ irads['age'].value_counts()
 - [`interests.csv`](https://raw.githubusercontent.com/umd-mith/irads/master/analysis/interests.csv) (money, clicks, impressions, number of ads, interest)
 - [`people_who_match.csv`](https://raw.githubusercontent.com/umd-mith/irads/master/analysis/people_who_match.csv) (money, clicks, impressions, number of ads, people type who match)
 
-# Vizualization in Pandas
+# Visualization in Pandas
 
 5. Let's explore some preliminary visualizations using one of those other datasets (`interests.csv`).
 
